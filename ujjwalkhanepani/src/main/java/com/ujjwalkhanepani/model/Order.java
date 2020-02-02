@@ -16,9 +16,11 @@ import javax.persistence.Table;
 
 import com.ujjwalkhanepani.model.enums.OrderStatus;
 import com.ujjwalkhanepani.model.enums.PaymentStatus;
+import lombok.Data;
 
 @Entity
 @Table(name = "order_details")
+@Data
 public class Order {
 
 	@Id
@@ -35,72 +37,22 @@ public class Order {
 	private String location;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "orderStatus")
+	@Column(name = "order_status")
 	private OrderStatus orderStatus = OrderStatus.ORDER;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "paymentStatus")
+	@Column(name = "payment_status")
 	private PaymentStatus paymentStatus = PaymentStatus.PENDING;
 
 	@OneToMany(mappedBy = "order",fetch = FetchType.EAGER)
 	private List<Payment> payments = new ArrayList<>();
 
-	public OrderStatus getOrderStatus() {
-		return orderStatus;
-	}
+	@Column(name = "trip_amount")
+	private Integer tripAmount;
 
-	public void setOrderStatus(OrderStatus orderStatus) {
-		this.orderStatus = orderStatus;
-	}
+	@Column(name = "remaining_amount")
+	private Integer remainingAmount;
 
-	public PaymentStatus getPaymentStatus() {
-		return paymentStatus;
-	}
 
-	public void setPaymentStatus(PaymentStatus paymentStatus) {
-		this.paymentStatus = paymentStatus;
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-
-	public String getLocation() {
-		return location;
-	}
-
-	public void setLocation(String location) {
-		this.location = location;
-	}
-
-	public List<Payment> getPayments() {
-		return payments;
-	}
-
-	public void setPayments(List<Payment> payments) {
-		this.payments = payments;
-	}
-
-	
 
 }
