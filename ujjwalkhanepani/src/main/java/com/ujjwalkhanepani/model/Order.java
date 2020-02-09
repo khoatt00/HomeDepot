@@ -1,6 +1,7 @@
 package com.ujjwalkhanepani.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -53,6 +54,8 @@ public class Order {
 	@Column(name = "remaining_amount")
 	private Integer remainingAmount;
 
+	@Column(name="trip_date")
+	private Date tripDate;
 
 
 }
