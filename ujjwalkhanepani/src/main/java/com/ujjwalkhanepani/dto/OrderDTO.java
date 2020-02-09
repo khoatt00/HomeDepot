@@ -1,6 +1,10 @@
 package com.ujjwalkhanepani.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.ujjwalkhanepani.utilites.DateConverter;
 import lombok.Data;
+
+import java.util.Date;
 
 @Data
 public class OrderDTO {
@@ -13,6 +17,8 @@ public class OrderDTO {
     private Integer amountPaid;
     private Integer remainingAmount;
     private Boolean fullPaid;
+    @JsonDeserialize(using = DateConverter.class)
+    private Date tripDate;
 
 
 }
