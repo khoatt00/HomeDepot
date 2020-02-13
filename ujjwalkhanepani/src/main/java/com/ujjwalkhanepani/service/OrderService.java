@@ -1,18 +1,18 @@
 package com.ujjwalkhanepani.service;
 
-import java.util.List;
-
+import com.ujjwalkhanepani.dto.OrderDTO;
+import com.ujjwalkhanepani.exceptions.IncorrectOrderException;
+import com.ujjwalkhanepani.model.Order;
+import com.ujjwalkhanepani.repository.OrderRepository;
 import com.ujjwalkhanepani.translator.OrderTranslator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.ujjwalkhanepani.dto.OrderDTO;
-import com.ujjwalkhanepani.exceptions.IncorrectOrderException;
-import com.ujjwalkhanepani.model.Order;
-import com.ujjwalkhanepani.repository.OrderRepository;
+import java.util.List;
 
 @Service
 public class OrderService {
@@ -37,7 +37,7 @@ public class OrderService {
     }
 
     public List<OrderDTO> getOrders() {
-        List<Order> orders = orderRepository.findAll();
+        List<Order> orders = orderRepository.findAll(Sort.by(Sort.Direction.DESC, "tripDate"));
         return new OrderTranslator().mapOrders(orders);
     }
 
@@ -59,4 +59,7 @@ public class OrderService {
         return orderDTO;
     }
 
+    public void deleteOrder(Long id) {
+        orderRepository.deleteById(id);
+    }
 }

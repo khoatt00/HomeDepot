@@ -28,6 +28,7 @@ public class DateConverter extends StdDeserializer<Date> {
     @Override
     public Date deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
         String date = jsonParser.getText();
+        log.info("Parsing date {}", date);
         try {
             SimpleDateFormat sdf = new SimpleDateFormat(DATE_PATTERN);
             return sdf.parse(date);
