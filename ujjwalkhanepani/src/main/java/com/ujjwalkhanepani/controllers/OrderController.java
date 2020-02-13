@@ -12,6 +12,8 @@ import com.ujjwalkhanepani.dto.OrderDTO;
 import com.ujjwalkhanepani.exceptions.IncorrectOrderException;
 import com.ujjwalkhanepani.service.OrderService;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api")
 @Slf4j
@@ -20,7 +22,7 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @RequestMapping(value = "/orders", method = RequestMethod.GET)
+    @RequestMapping(value = "/order", method = RequestMethod.GET)
     public List<OrderDTO> getOrders() {
         log.info("Entering getOrders");
         return orderService.getOrders();
@@ -28,7 +30,8 @@ public class OrderController {
 
 
     @RequestMapping(value = "/order", method = RequestMethod.POST)
-    public ResponseEntity<?> saveOrders(@RequestBody OrderDTO orderDto) {
+    public ResponseEntity<?> saveOrders(@RequestBody
+                                        @Valid OrderDTO orderDto) {
         OrderDTO orderDTO = orderService.saveOrder(orderDto);
         return new ResponseEntity<>(orderDTO, HttpStatus.OK);
     }
@@ -47,4 +50,9 @@ public class OrderController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @DeleteMapping(value = "/order/{orderId}")
+    public ResponseEntity<?> delete(@PathVariable("orderId") Long id) {
+        orderService.deleteOrder(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

@@ -18,7 +18,8 @@ public class ApplicationConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/api/*").allowedOrigins(crossSiteOrigin);
+                //registry.addMapping("/api/*").allowedOrigins(crossSiteOrigin);
+                registry.addMapping("/**").allowedMethods("*").allowedOrigins(crossSiteOrigin);
             }
         };
     }
