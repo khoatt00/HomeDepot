@@ -17,7 +17,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
-        <h2.database.version>1.4.200</h2.database.version>
+        <h2.database.version>2.0.206</h2.database.version>
         <lombok.version>1.18.10</lombok.version>
         <hibernate.validator.version>6.1.2.Final</hibernate.validator.version>
     </properties>
